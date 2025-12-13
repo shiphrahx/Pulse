@@ -127,7 +127,7 @@ const Sidebar = () => {
                     onKeyDown={(e) => handleKeyDown(e, item.id)}
                     className={`
                       w-full flex items-center gap-3 px-4 py-3 rounded-xl
-                      transition-all duration-300 focus-outline
+                      transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500
                       ${
                         isActive
                           ? 'bg-primary-600 text-white'
@@ -148,7 +148,7 @@ const Sidebar = () => {
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="mt-6 w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus-outline"
+          className="mt-6 w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
           aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
           {theme === 'light' ? <FaMoon size={18} /> : <FaSun size={18} />}

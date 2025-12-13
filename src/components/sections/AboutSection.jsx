@@ -69,9 +69,6 @@ const TestimonialCard = ({ testimonial }) => (
 
 const AboutSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [nextTestimonialIndex, setNextTestimonialIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [direction, setDirection] = useState('right'); // 'left' or 'right'
   const [skillsVisible, setSkillsVisible] = useState(false);
   const skillsContainerRef = useRef(null);
 
@@ -97,36 +94,18 @@ const AboutSection = () => {
   }, [skillsVisible]);
 
   const nextTestimonial = () => {
-    const next = (currentTestimonial + 1) % testimonials.length;
-    setNextTestimonialIndex(next);
-    setDirection('right');
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentTestimonial(next);
-      setIsTransitioning(false);
-    }, 500);
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
 
   const prevTestimonial = () => {
-    const prev = currentTestimonial === 0 ? testimonials.length - 1 : currentTestimonial - 1;
-    setNextTestimonialIndex(prev);
-    setDirection('left');
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentTestimonial(prev);
-      setIsTransitioning(false);
-    }, 500);
+    setCurrentTestimonial((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
   };
 
   const goToTestimonial = (index) => {
     if (index !== currentTestimonial) {
-      setNextTestimonialIndex(index);
-      setDirection(index > currentTestimonial ? 'right' : 'left');
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentTestimonial(index);
-        setIsTransitioning(false);
-      }, 500);
+      setCurrentTestimonial(index);
     }
   };
 
@@ -247,44 +226,20 @@ const AboutSection = () => {
           <h3 className="text-2xl font-display font-bold mb-8 text-center">
             Client Testimonials
           </h3>
-          <div className="relative max-w-4xl mx-auto overflow-hidden">
-            <div
-              className={`card p-8 lg:p-12 transition-all duration-500 ease-out ${
-                isTransitioning
-                  ? direction === 'right'
-                    ? 'opacity-0 translate-x-full'
-                    : 'opacity-0 -translate-x-full'
-                  : 'opacity-100 translate-x-0'
-              }`}
-            >
-              {/* Stars */}
-              <div className="flex justify-center gap-1 mb-6">
-                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-500" size={24} />
+          <div className="relative max-w-4xl mx-auto">
+            <div className="overflow-hidden">
+              {/* Carousel Track */}
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{
+                  transform: `translateX(-${currentTestimonial * 100}%)`
+                }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="w-full flex-shrink-0">
+                    <TestimonialCard testimonial={testimonial} />
+                  </div>
                 ))}
-              </div>
-
-              {/* Testimonial Text */}
-              <blockquote className="text-lg text-center text-slate-700 dark:text-slate-300 mb-8 italic">
-                "{testimonials[currentTestimonial].text}"
-              </blockquote>
-
-              {/* Client Info */}
-              <div className="flex items-center justify-center gap-4">
-                <img
-                  src={testimonials[currentTestimonial].avatar}
-                  alt={testimonials[currentTestimonial].name}
-                  className="w-16 h-16 rounded-full object-cover"
-                  loading="lazy"
-                />
-                <div className="text-left">
-                  <div className="font-bold text-slate-800 dark:text-slate-200">
-                    {testimonials[currentTestimonial].name}
-                  </div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
-                    {testimonials[currentTestimonial].role}
-                  </div>
-                </div>
               </div>
             </div>
 

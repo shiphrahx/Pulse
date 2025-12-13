@@ -25,9 +25,9 @@ const PortfolioSection = () => {
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 focus-outline ${
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 ${
                 activeFilter === category
-                  ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-600 text-white'
                   : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700'
               }`}
               aria-pressed={activeFilter === category}
