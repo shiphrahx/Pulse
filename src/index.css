@@ -6,11 +6,16 @@
 
 :root {
   --bg-light: #f8fafc;
-  --bg-dark: #0a0e27;
+  --bg-dark: #111111;
   --card-light: #ffffff;
-  --card-dark: #0f1330;
+  --card-dark: #1a1a1a;
   --border-light: #e2e8f0;
-  --border-dark: #1a1f3a;
+  --border-dark: #2a2a2a;
+
+  /* Color scheme variables (set by ColorContext) */
+  --color-primary: #0ea5e9;
+  --color-primary-hover: #0284c7;
+  --color-gradient: linear-gradient(to right, #0284c7, #38bdf8);
 }
 
 @layer base {
@@ -20,13 +25,13 @@
 
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-light);
+    background-color: #f8fafc;
     color: #1e293b;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   .dark body {
-    background-color: var(--bg-dark);
+    background-color: #111111;
     color: #f1f5f9;
   }
 
@@ -70,14 +75,14 @@
   }
 
   .btn-primary {
-    background-color: #0284c7;
+    background-color: var(--color-primary);
     color: white;
-    box-shadow: 0 10px 15px -3px rgb(14 165 233 / 0.3);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
   }
 
   .btn-primary:hover {
-    background-color: #0369a1;
-    box-shadow: 0 20px 25px -5px rgb(14 165 233 / 0.4);
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
   }
 
   .btn-secondary {
@@ -199,7 +204,77 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    background-image: linear-gradient(to right, #0284c7, #38bdf8);
+    background-image: var(--color-gradient);
+  }
+
+  /* Dynamic primary color utilities */
+  .text-primary-400 {
+    color: var(--color-primary);
+  }
+
+  .text-primary-600 {
+    color: var(--color-primary);
+  }
+
+  .bg-primary-500 {
+    background-color: var(--color-primary);
+  }
+
+  .bg-primary-600 {
+    background-color: var(--color-primary);
+  }
+
+  .bg-primary-700 {
+    background-color: var(--color-primary-hover);
+  }
+
+  .hover\:bg-primary-600:hover {
+    background-color: var(--color-primary);
+  }
+
+  .hover\:bg-primary-700:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .border-primary-500 {
+    border-color: var(--color-primary);
+  }
+
+  .border-primary-600 {
+    border-color: var(--color-primary);
+  }
+
+  .ring-primary-500 {
+    --tw-ring-color: var(--color-primary);
+  }
+
+  .focus\:ring-primary-500:focus {
+    --tw-ring-color: var(--color-primary);
+  }
+
+  .from-primary-600 {
+    --tw-gradient-from: var(--color-primary);
+    --tw-gradient-to: rgb(from var(--color-primary) r g b / 0);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .to-primary-400 {
+    --tw-gradient-to: var(--color-primary);
+  }
+
+  .shadow-primary-500\/30 {
+    --tw-shadow-color: var(--color-primary);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .shadow-primary-500\/40 {
+    --tw-shadow-color: var(--color-primary);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .hover\:shadow-primary-500\/40:hover {
+    --tw-shadow-color: var(--color-primary);
+    --tw-shadow: var(--tw-shadow-colored);
   }
 
   .animate-delay-200 {

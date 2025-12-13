@@ -21,16 +21,12 @@ export default {
           900: '#0c4a6e',
           950: '#082f49',
         },
-        dark: {
-          bg: '#0a0e27',
-          card: '#0f1330',
-          border: '#1a1f3a',
-        },
-        light: {
-          bg: '#f8fafc',
-          card: '#ffffff',
-          border: '#e2e8f0',
-        }
+        'dark-bg': '#111111',
+        'dark-card': '#1a1a1a',
+        'dark-border': '#2a2a2a',
+        'light-bg': '#f8fafc',
+        'light-card': '#ffffff',
+        'light-border': '#e2e8f0',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
+import ColorSwitcher from '../components/ColorSwitcher';
 import HomeSection from '../components/sections/HomeSection';
 import AboutSection from '../components/sections/AboutSection';
 import ServicesSection from '../components/sections/ServicesSection';
@@ -22,15 +23,28 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <Sidebar />
+      <ColorSwitcher />
 
       {/* Main Content */}
       <main className="lg:pl-72">
-        <HomeSection />
-        <AboutSection />
-        <ServicesSection />
-        <PortfolioSection />
-        <BlogSection />
-        <ContactSection />
+        <div className="bg-white dark:bg-dark-bg">
+          <HomeSection />
+        </div>
+        <div className="bg-slate-100 dark:bg-[#1a1a1a]">
+          <AboutSection />
+        </div>
+        <div className="bg-white dark:bg-dark-bg">
+          <ServicesSection />
+        </div>
+        <div className="bg-slate-100 dark:bg-[#1a1a1a]">
+          <PortfolioSection />
+        </div>
+        <div className="bg-white dark:bg-dark-bg">
+          <BlogSection />
+        </div>
+        <div className="bg-slate-100 dark:bg-[#1a1a1a]">
+          <ContactSection />
+        </div>
       </main>
     </div>
   );

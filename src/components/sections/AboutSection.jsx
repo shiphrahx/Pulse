@@ -1,18 +1,133 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaGraduationCap, FaBriefcase, FaChevronLeft, FaChevronRight, FaStar } from 'react-icons/fa';
 import { aboutData, testimonials } from '../../data/data';
+import { useCounter } from '../../hooks/useCounter';
+
+// Animated Skill Component
+const AnimatedSkill = ({ name, level, isVisible }) => {
+  const percentage = useCounter(level, 1500, isVisible);
+
+  return (
+    <div className="card p-6 animate-slide-up">
+      <div className="flex justify-between items-center mb-3">
+        <span className="font-semibold text-slate-800 dark:text-slate-200">
+          {name}
+        </span>
+        <span className="text-primary-600 dark:text-primary-400 font-bold">
+          {percentage}%
+        </span>
+      </div>
+      <div className="w-full h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-gradient-to-r from-primary-600 to-primary-400 rounded-full transition-all duration-300 ease-out"
+          style={{ width: `${percentage}%` }}
+          role="progressbar"
+          aria-valuenow={percentage}
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-label={`${name} proficiency`}
+        />
+      </div>
+    </div>
+  );
+};
+
+// Testimonial Card Component
+const TestimonialCard = ({ testimonial }) => (
+  <div className="card p-8 lg:p-12 min-w-full flex-shrink-0">
+    {/* Stars */}
+    <div className="flex justify-center gap-1 mb-6">
+      {[...Array(testimonial.rating)].map((_, i) => (
+        <FaStar key={i} className="text-yellow-500" size={24} />
+      ))}
+    </div>
+
+    {/* Testimonial Text */}
+    <blockquote className="text-lg text-center text-slate-700 dark:text-slate-300 mb-8 italic">
+      "{testimonial.text}"
+    </blockquote>
+
+    {/* Client Info */}
+    <div className="flex items-center justify-center gap-4">
+      <img
+        src={testimonial.avatar}
+        alt={testimonial.name}
+        className="w-16 h-16 rounded-full object-cover"
+        loading="lazy"
+      />
+      <div className="text-left">
+        <div className="font-bold text-slate-800 dark:text-slate-200">
+          {testimonial.name}
+        </div>
+        <div className="text-sm text-slate-600 dark:text-slate-400">
+          {testimonial.role}
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const AboutSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [nextTestimonialIndex, setNextTestimonialIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [direction, setDirection] = useState('right'); // 'left' or 'right'
+  const [skillsVisible, setSkillsVisible] = useState(false);
+  const skillsContainerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !skillsVisible) {
+          setSkillsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (skillsContainerRef.current) {
+      observer.observe(skillsContainerRef.current);
+    }
+
+    return () => {
+      if (skillsContainerRef.current) {
+        observer.unobserve(skillsContainerRef.current);
+      }
+    };
+  }, [skillsVisible]);
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    const next = (currentTestimonial + 1) % testimonials.length;
+    setNextTestimonialIndex(next);
+    setDirection('right');
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentTestimonial(next);
+      setIsTransitioning(false);
+    }, 500);
   };
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    );
+    const prev = currentTestimonial === 0 ? testimonials.length - 1 : currentTestimonial - 1;
+    setNextTestimonialIndex(prev);
+    setDirection('left');
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentTestimonial(prev);
+      setIsTransitioning(false);
+    }, 500);
+  };
+
+  const goToTestimonial = (index) => {
+    if (index !== currentTestimonial) {
+      setNextTestimonialIndex(index);
+      setDirection(index > currentTestimonial ? 'right' : 'left');
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentTestimonial(index);
+        setIsTransitioning(false);
+      }, 500);
+    }
   };
 
   const handleKeyDown = (e, action) => {
@@ -39,37 +154,18 @@ const AboutSection = () => {
         </div>
 
         {/* Skills */}
-        <div className="mb-16">
+        <div className="mb-16" ref={skillsContainerRef}>
           <h3 className="text-2xl font-display font-bold mb-8">
             Technical Skills
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {aboutData.skills.map((skill, index) => (
-              <div
+            {aboutData.skills.map((skill) => (
+              <AnimatedSkill
                 key={skill.name}
-                className="card p-6 animate-slide-up"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="flex justify-between items-center mb-3">
-                  <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    {skill.name}
-                  </span>
-                  <span className="text-primary-600 dark:text-primary-400 font-bold">
-                    {skill.level}%
-                  </span>
-                </div>
-                <div className="w-full h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-primary-600 to-primary-400 rounded-full transition-all duration-1000 ease-out"
-                    style={{ width: `${skill.level}%` }}
-                    role="progressbar"
-                    aria-valuenow={skill.level}
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    aria-label={`${skill.name} proficiency`}
-                  />
-                </div>
-              </div>
+                name={skill.name}
+                level={skill.level}
+                isVisible={skillsVisible}
+              />
             ))}
           </div>
         </div>
@@ -151,8 +247,16 @@ const AboutSection = () => {
           <h3 className="text-2xl font-display font-bold mb-8 text-center">
             Client Testimonials
           </h3>
-          <div className="relative max-w-4xl mx-auto">
-            <div className="card p-8 lg:p-12 animate-fade-in">
+          <div className="relative max-w-4xl mx-auto overflow-hidden">
+            <div
+              className={`card p-8 lg:p-12 transition-all duration-500 ease-out ${
+                isTransitioning
+                  ? direction === 'right'
+                    ? 'opacity-0 translate-x-full'
+                    : 'opacity-0 -translate-x-full'
+                  : 'opacity-100 translate-x-0'
+              }`}
+            >
               {/* Stars */}
               <div className="flex justify-center gap-1 mb-6">
                 {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
@@ -189,7 +293,7 @@ const AboutSection = () => {
               <button
                 onClick={prevTestimonial}
                 onKeyDown={(e) => handleKeyDown(e, prevTestimonial)}
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-primary-600 hover:text-white transition-all duration-300 focus-outline"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-primary-600 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 aria-label="Previous testimonial"
               >
                 <FaChevronLeft />
@@ -200,8 +304,8 @@ const AboutSection = () => {
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 focus-outline ${
+                    onClick={() => goToTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
                       index === currentTestimonial
                         ? 'bg-primary-600 w-8'
                         : 'bg-slate-300 dark:bg-slate-700'
@@ -215,7 +319,7 @@ const AboutSection = () => {
               <button
                 onClick={nextTestimonial}
                 onKeyDown={(e) => handleKeyDown(e, nextTestimonial)}
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-primary-600 hover:text-white transition-all duration-300 focus-outline"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-primary-600 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 aria-label="Next testimonial"
               >
                 <FaChevronRight />

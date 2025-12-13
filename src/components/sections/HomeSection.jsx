@@ -1,5 +1,7 @@
+import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaDribbble, FaDownload, FaEnvelope } from 'react-icons/fa';
 import { useTyper } from '../../hooks/useTyper';
+import { useCounter } from '../../hooks/useCounter';
 import { personalInfo } from '../../data/data';
 
 const iconMap = {
@@ -7,6 +9,49 @@ const iconMap = {
   FaLinkedin,
   FaTwitter,
   FaDribbble,
+};
+
+// Animated Metric Component
+const AnimatedMetric = ({ value, label, delay }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const metricRef = useRef(null);
+  const count = useCounter(value, 2000, isVisible);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (metricRef.current) {
+      observer.observe(metricRef.current);
+    }
+
+    return () => {
+      if (metricRef.current) {
+        observer.unobserve(metricRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  return (
+    <div
+      ref={metricRef}
+      className="card p-6 hover:shadow-xl transition-shadow duration-300 animate-slide-up"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <div className="text-4xl lg:text-5xl font-display font-bold text-gradient mb-2">
+        {count}+
+      </div>
+      <div className="text-slate-600 dark:text-slate-400 font-medium">
+        {label}
+      </div>
+    </div>
+  );
 };
 
 const HomeSection = () => {
@@ -101,18 +146,12 @@ const HomeSection = () => {
           {/* Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {personalInfo.metrics.map((metric, index) => (
-              <div
+              <AnimatedMetric
                 key={metric.label}
-                className="card p-6 hover:shadow-xl transition-shadow duration-300 animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="text-4xl lg:text-5xl font-display font-bold text-gradient mb-2">
-                  {metric.value}+
-                </div>
-                <div className="text-slate-600 dark:text-slate-400 font-medium">
-                  {metric.label}
-                </div>
-              </div>
+                value={metric.value}
+                label={metric.label}
+                delay={index * 100}
+              />
             ))}
           </div>
         </div>

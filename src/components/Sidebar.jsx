@@ -130,7 +130,7 @@ const Sidebar = () => {
                       transition-all duration-300 focus-outline
                       ${
                         isActive
-                          ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/30'
+                          ? 'bg-primary-600 text-white'
                           : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                       }
                     `}
