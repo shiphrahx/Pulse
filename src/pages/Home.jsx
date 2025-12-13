@@ -1,14 +1,18 @@
 import { useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
-import ColorSwitcher from '../components/ColorSwitcher';
+import ConfigPanel from '../components/ConfigPanel';
+import ParticleBackground from '../components/ParticleBackground';
 import HomeSection from '../components/sections/HomeSection';
 import AboutSection from '../components/sections/AboutSection';
 import ServicesSection from '../components/sections/ServicesSection';
 import PortfolioSection from '../components/sections/PortfolioSection';
 import BlogSection from '../components/sections/BlogSection';
 import ContactSection from '../components/sections/ContactSection';
+import { useConfig } from '../context/ConfigContext';
 
 const Home = () => {
+  const { particlesEnabled } = useConfig();
+
   useEffect(() => {
     // Set page title
     document.title = 'Pulse - Modern One-Page Portfolio & vCard Template';
@@ -21,29 +25,47 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       <Sidebar />
-      <ColorSwitcher />
+      <ConfigPanel />
 
       {/* Main Content */}
-      <main className="lg:pl-72">
-        <div className="bg-white dark:bg-dark-bg">
-          <HomeSection />
+      <main className="lg:pl-72 relative">
+        <div className="bg-white dark:bg-dark-bg relative">
+          {particlesEnabled && <ParticleBackground variant="light" />}
+          <div className="relative z-10">
+            <HomeSection />
+          </div>
         </div>
-        <div className="bg-slate-100 dark:bg-[#1a1a1a]">
-          <AboutSection />
+        <div className="bg-slate-100 dark:bg-[#1a1a1a] relative">
+          {particlesEnabled && <ParticleBackground variant="dark" />}
+          <div className="relative z-10">
+            <AboutSection />
+          </div>
         </div>
-        <div className="bg-white dark:bg-dark-bg">
-          <ServicesSection />
+        <div className="bg-white dark:bg-dark-bg relative">
+          {particlesEnabled && <ParticleBackground variant="light" />}
+          <div className="relative z-10">
+            <ServicesSection />
+          </div>
         </div>
-        <div className="bg-slate-100 dark:bg-[#1a1a1a]">
-          <PortfolioSection />
+        <div className="bg-slate-100 dark:bg-[#1a1a1a] relative">
+          {particlesEnabled && <ParticleBackground variant="dark" />}
+          <div className="relative z-10">
+            <PortfolioSection />
+          </div>
         </div>
-        <div className="bg-white dark:bg-dark-bg">
-          <BlogSection />
+        <div className="bg-white dark:bg-dark-bg relative">
+          {particlesEnabled && <ParticleBackground variant="light" />}
+          <div className="relative z-10">
+            <BlogSection />
+          </div>
         </div>
-        <div className="bg-slate-100 dark:bg-[#1a1a1a]">
-          <ContactSection />
+        <div className="bg-slate-100 dark:bg-[#1a1a1a] relative">
+          {particlesEnabled && <ParticleBackground variant="dark" />}
+          <div className="relative z-10">
+            <ContactSection />
+          </div>
         </div>
       </main>
     </div>

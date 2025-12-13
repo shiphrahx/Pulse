@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { ColorProvider } from './context/ColorContext';
+import { ConfigProvider } from './context/ConfigContext';
 import Home from './pages/Home';
 import Details from './pages/Details';
 import BlogArticle from './pages/BlogArticle';
@@ -30,18 +31,20 @@ function App() {
   return (
     <ColorProvider>
       <ThemeProvider>
-        {loading ? (
-          <Preloader />
-        ) : (
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/service/:id" element={<Details type="service" />} />
-              <Route path="/portfolio/:id" element={<Details type="portfolio" />} />
-              <Route path="/blog/:id" element={<BlogArticle />} />
-            </Routes>
-          </Router>
-        )}
+        <ConfigProvider>
+          {loading ? (
+            <Preloader />
+          ) : (
+            <Router>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/service/:id" element={<Details type="service" />} />
+                <Route path="/portfolio/:id" element={<Details type="portfolio" />} />
+                <Route path="/blog/:id" element={<BlogArticle />} />
+              </Routes>
+            </Router>
+          )}
+        </ConfigProvider>
       </ThemeProvider>
     </ColorProvider>
   );

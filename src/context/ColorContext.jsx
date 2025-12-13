@@ -65,7 +65,7 @@ export const colorSchemes = {
 export const ColorProvider = ({ children }) => {
   const [colorScheme, setColorScheme] = useState(() => {
     const savedColor = localStorage.getItem('pulse-color');
-    return savedColor || 'blue';
+    return savedColor || 'orange';
   });
 
   useEffect(() => {
