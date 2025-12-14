@@ -11,6 +11,16 @@ const BlogArticle = () => {
 
   const post = blogPosts.find(p => p.id === id);
 
+  const handleBlogClick = (e) => {
+    e.preventDefault();
+    navigate('/', { state: { scrollTo: 'blog' } });
+  };
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    navigate('/', { state: { scrollTo: 'contact' } });
+  };
+
   useEffect(() => {
     if (!post) {
       navigate('/');
@@ -92,13 +102,13 @@ const BlogArticle = () => {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-40 card border-b">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link
-            to="/#blog"
+          <button
+            onClick={handleBlogClick}
             className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors focus-outline rounded"
           >
             <FaArrowLeft />
             <span className="font-medium">Back to Blog</span>
-          </Link>
+          </button>
 
           <button
             onClick={toggleTheme}
@@ -160,20 +170,20 @@ const BlogArticle = () => {
 
           {/* Share / Back CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 animate-slide-up animate-delay-400">
-            <Link
-              to="/#blog"
+            <button
+              onClick={handleBlogClick}
               className="btn btn-outline"
             >
               <FaArrowLeft />
               Back to Blog
-            </Link>
+            </button>
 
-            <Link
-              to="/#contact"
+            <button
+              onClick={handleContactClick}
               className="btn btn-primary"
             >
               Get in Touch
-            </Link>
+            </button>
           </div>
 
           {/* Related Articles (Optional - can be added later) */}
