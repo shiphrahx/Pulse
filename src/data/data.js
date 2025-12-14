@@ -6,7 +6,7 @@ export const personalInfo = {
   email: 'alex@example.com',
   phone: '+1 (555) 123-4567',
   location: 'San Francisco, CA',
-  avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+  avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop',
   socials: [
     { name: 'GitHub', url: 'https://github.com', icon: 'FaGithub' },
     { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'FaLinkedin' },
