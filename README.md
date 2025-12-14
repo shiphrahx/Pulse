@@ -2,15 +2,16 @@
 
 A professional, ThemeForest-ready portfolio and vCard template built with React, Vite, and Tailwind CSS. Features a smooth single-page experience with dedicated detail pages for services, portfolio items, and blog articles.
 
-![Pulse Template](https://via.placeholder.com/1200x600/0ea5e9/ffffff?text=Pulse+Portfolio+Template)
-
 ## Features
 
 ### Core Features
 - ✨ **Modern Tech Stack**: React 18, Vite, Tailwind CSS
 - 🎨 **Light/Dark Theme**: Toggle with localStorage persistence and OS preference detection
+- 🎨 **8 Color Schemes**: Choose from Blue, Purple, Green, Orange, Pink, Red, Teal, and Yellow
+- ✨ **Particle Background**: Performance-optimized animated particle effects with singleton pattern
+- ⚙️ **Configuration Panel**: Real-time customization of particles and color schemes
 - 📱 **Fully Responsive**: Mobile-first design with adaptive navigation
-- ⚡ **Performance Optimized**: Lazy loading, code splitting, optimized builds
+- ⚡ **Performance Optimized**: Lazy loading, code splitting, optimized builds with singleton particle rendering
 - ♿ **Accessible**: WCAG compliant with keyboard navigation and ARIA labels
 - 🔍 **SEO Ready**: Meta tags, Open Graph, Twitter Cards
 - 🎭 **Smooth Animations**: Framer Motion with reduced-motion support
@@ -32,6 +33,8 @@ A professional, ThemeForest-ready portfolio and vCard template built with React,
 - 🏷️ **Category Filtering**: For portfolio and blog sections
 - 📱 **Mobile Menu**: Slide-out drawer navigation
 - ⏳ **Preloader**: With timeout failsafe and reduced-motion support
+- ✨ **Particle Animations**: 160 particles with optimized rendering using @tsparticles
+- 🎛️ **Settings Panel**: Toggle particles and switch color schemes on the fly
 
 ## Installation
 
@@ -215,9 +218,34 @@ export const categories = {
 
 ## Customization
 
+### Color Schemes
+
+The template includes 8 pre-configured color schemes that users can switch between using the configuration panel. To add or modify color schemes, edit [src/context/ColorContext.jsx](src/context/ColorContext.jsx):
+
+```javascript
+export const colorSchemes = {
+  yourColor: {
+    name: 'Your Color',
+    primary: '#hexcode',
+    primaryHover: '#hexcode',
+    gradient: 'linear-gradient(to right, #hexcode, #hexcode)',
+  },
+};
+```
+
+Available color schemes:
+- Blue (default)
+- Purple
+- Green
+- Orange
+- Pink
+- Red
+- Teal
+- Yellow
+
 ### Theme Colors
 
-Edit [tailwind.config.js](tailwind.config.js) to change colors:
+Edit [tailwind.config.js](tailwind.config.js) to change base theme colors:
 
 ```javascript
 colors: {
@@ -227,8 +255,31 @@ colors: {
     600: '#0284c7',
     // ...
   },
+  'dark-bg': '#111111',
+  'dark-card': '#1a1a1a',
 }
 ```
+
+### Particle Background
+
+Customize particle settings in [src/components/ParticleBackground.jsx](src/components/ParticleBackground.jsx):
+
+```javascript
+particles: {
+  number: {
+    value: 160 // Number of particles
+  },
+  size: {
+    value: { min: 0.4, max: 1.2 } // Particle size
+  },
+  links: {
+    distance: 100, // Connection distance
+    opacity: 0.45, // Link opacity
+  }
+}
+```
+
+Users can also toggle particles on/off using the configuration panel.
 
 ### Fonts
 
@@ -374,9 +425,14 @@ pulse/
 │   ├── components/      # Reusable components
 │   │   ├── sections/    # Page sections
 │   │   ├── Sidebar.jsx
+│   │   ├── ConfigPanel.jsx
+│   │   ├── ParticleBackground.jsx
 │   │   ├── Preloader.jsx
 │   │   └── SEO.jsx
-│   ├── context/         # React Context (Theme)
+│   ├── context/         # React Context providers
+│   │   ├── ThemeContext.jsx
+│   │   ├── ColorContext.jsx
+│   │   └── ConfigContext.jsx
 │   ├── data/            # Configuration and content data
 │   ├── hooks/           # Custom React hooks
 │   ├── pages/           # Page components
@@ -404,9 +460,20 @@ For support, please contact: support@example.com
 - **Built with**: React, Vite, Tailwind CSS
 - **Icons**: React Icons (Font Awesome)
 - **Fonts**: Inter, Sora (Google Fonts)
+- **Particles**: @tsparticles/react, @tsparticles/slim
 - **Images**: Unsplash (demo images - replace with your own)
 
 ## Changelog
+
+### Version 1.1.0 (2024-12-14)
+- Added animated particle background with performance optimization
+- Added configuration panel for real-time customization
+- Added 8 color scheme options (Blue, Purple, Green, Orange, Pink, Red, Teal, Yellow)
+- Implemented singleton pattern for particle rendering
+- Added particle toggle functionality
+- Enhanced performance with Intersection Observer for particle activation
+- Fixed portfolio filter clickability
+- Updated project structure with new context providers
 
 ### Version 1.0.0 (2024-01-15)
 - Initial release
