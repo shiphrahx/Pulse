@@ -465,7 +465,7 @@ For support, please contact: support@example.com
 
 ## Changelog
 
-### Version 1.1.0 (2024-12-14)
+### Version 1.0.1 (2025-12-14)
 - Added animated particle background with performance optimization
 - Added configuration panel for real-time customization
 - Added 8 color scheme options (Blue, Purple, Green, Orange, Pink, Red, Teal, Yellow)
@@ -475,7 +475,7 @@ For support, please contact: support@example.com
 - Fixed portfolio filter clickability
 - Updated project structure with new context providers
 
-### Version 1.0.0 (2024-01-15)
+### Version 1.0.0 (2025-01-15)
 - Initial release
 - Single-page portfolio with 6 sections
 - Service and portfolio detail pages
