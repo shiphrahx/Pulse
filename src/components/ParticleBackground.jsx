@@ -1,143 +1,196 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
-import { useTheme } from '../context/ThemeContext';
 
-let particleIdCounter = 0;
+// Global initialization - only run once across all instances
+let engineInitialized = false;
+let engineInitPromise = null;
 
-const ParticleBackground = ({ variant = 'light' }) => {
+// Global state to track which particle instance is currently active
+let activeInstanceId = null;
+const instanceCallbacks = new Map();
+
+const ParticleBackground = ({ showInDark = true }) => {
   const { theme } = useTheme();
-  const [particleId] = useState(() => `tsparticles-${particleIdCounter++}`);
-  const [init, setInit] = useState(false);
+  const [init, setInit] = useState(engineInitialized);
+  const [isActive, setIsActive] = useState(false);
+  const containerRef = useRef(null);
+  const particleIdRef = useRef(`particles-${Math.random().toString(36).substr(2, 9)}`);
 
+  const isDark = theme === 'dark';
+  const shouldShow = (showInDark && isDark) || (!showInDark && !isDark);
+
+  // Initialize particles engine once globally
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
+    if (engineInitialized) {
       setInit(true);
-    });
+      return;
+    }
+
+    if (!engineInitPromise) {
+      engineInitPromise = initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      }).then(() => {
+        engineInitialized = true;
+        setInit(true);
+      });
+    } else {
+      engineInitPromise.then(() => setInit(true));
+    }
   }, []);
 
-  if (!init) {
-    return null;
+  // Intersection Observer to detect visibility
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const visible = entry.isIntersecting && entry.intersectionRatio > 0.5;
+
+          // Register callback for global singleton management
+          if (visible) {
+            instanceCallbacks.set(particleIdRef.current, () => setIsActive(true));
+
+            // Deactivate previous instance immediately
+            if (activeInstanceId && activeInstanceId !== particleIdRef.current) {
+              const prevCallback = instanceCallbacks.get(activeInstanceId);
+              if (prevCallback) prevCallback(false);
+            }
+
+            // Activate this instance
+            activeInstanceId = particleIdRef.current;
+            setIsActive(true);
+          } else {
+            instanceCallbacks.delete(particleIdRef.current);
+            if (activeInstanceId === particleIdRef.current) {
+              activeInstanceId = null;
+            }
+            setIsActive(false);
+          }
+        });
+      },
+      {
+        threshold: [0, 0.5, 1],
+        rootMargin: '0px'
+      }
+    );
+
+    observer.observe(containerRef.current);
+    return () => {
+      instanceCallbacks.delete(particleIdRef.current);
+      if (activeInstanceId === particleIdRef.current) {
+        activeInstanceId = null;
+      }
+      observer.disconnect();
+    };
+  }, []);
+
+  const particleColor = isDark ? '#64748b' : '#94a3b8';
+  const lineColor = isDark ? '#64748b' : '#94a3b8';
+
+  // Memoize options to prevent recreation
+  const options = useMemo(() => ({
+    fullScreen: {
+      enable: false
+    },
+    background: {
+      color: {
+        value: 'transparent'
+      }
+    },
+    fpsLimit: 30,
+    interactivity: {
+      detectsOn: 'window',
+      events: {
+        onHover: {
+          enable: false
+        },
+        onClick: {
+          enable: false
+        },
+        resize: {
+          enable: true,
+          delay: 0.5
+        }
+      }
+    },
+    particles: {
+      color: {
+        value: particleColor
+      },
+      links: {
+        color: lineColor,
+        distance: 100,
+        enable: true,
+        opacity: 0.45,
+        width: 1,
+        triangles: {
+          enable: false
+        }
+      },
+      move: {
+        enable: true,
+        speed: 1,
+        direction: 'none',
+        random: false,
+        straight: false,
+        outModes: {
+          default: 'bounce'
+        },
+        attract: {
+          enable: false
+        }
+      },
+      number: {
+        density: {
+          enable: true,
+          area: 800
+        },
+        value: 160
+      },
+      opacity: {
+        value: 0.6,
+        animation: {
+          enable: false
+        }
+      },
+      shape: {
+        type: 'circle'
+      },
+      size: {
+        value: { min: 0.4, max: 1.2 },
+        animation: {
+          enable: false
+        }
+      },
+      collisions: {
+        enable: false
+      }
+    },
+    detectRetina: true,
+    pauseOnBlur: true,
+    pauseOnOutsideViewport: true,
+    smooth: true
+  }), [particleColor, lineColor]);
+
+  if (!shouldShow || !init) {
+    return <div ref={containerRef} className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }} />;
   }
 
-  // Determine colors based on variant and theme
-  const isDark = theme === 'dark';
-  const isLightSection = variant === 'light';
-
-  // For dark theme:
-  // - Darker sections (#111): use slightly lighter particles
-  // - Lighter sections (#1a1a1a): use slightly darker particles
-  // For light theme:
-  // - White sections: use light gray particles
-  // - Gray sections: use medium gray particles
-
-  let particleColor, linkColor, particleOpacity, linkOpacity;
-
-  if (isDark) {
-    if (isLightSection) {
-      // Darker background (#111) - use barely visible lighter particles
-      particleColor = '#1f2937';
-      linkColor = '#1f2937';
-      particleOpacity = 0.15;
-      linkOpacity = 0.1;
-    } else {
-      // Lighter background (#1a1a1a) - use barely visible darker particles
-      particleColor = '#374151';
-      linkColor = '#374151';
-      particleOpacity = 0.2;
-      linkOpacity = 0.15;
-    }
-  } else {
-    if (isLightSection) {
-      // White background - use very light gray particles
-      particleColor = '#e2e8f0';
-      linkColor = '#e2e8f0';
-      particleOpacity = 0.3;
-      linkOpacity = 0.2;
-    } else {
-      // Gray background (#f1f5f9) - use medium gray particles
-      particleColor = '#cbd5e1';
-      linkColor = '#cbd5e1';
-      particleOpacity = 0.4;
-      linkOpacity = 0.3;
-    }
+  // Only render particles if this is the active instance
+  if (!isActive) {
+    return <div ref={containerRef} className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }} />;
   }
 
   return (
-    <div className="absolute inset-0" style={{ zIndex: 0, pointerEvents: 'all' }}>
+    <div ref={containerRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
       <Particles
-        id={particleId}
-        options={{
-          background: {
-            color: {
-              value: 'transparent',
-            },
-          },
-          fullScreen: {
-            enable: false,
-          },
-          fpsLimit: 60,
-          particles: {
-            color: {
-              value: particleColor,
-            },
-            links: {
-              color: linkColor,
-              distance: 140,
-              enable: true,
-              opacity: linkOpacity,
-              width: 1,
-            },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: 'none',
-              random: false,
-              straight: false,
-              outModes: {
-                default: 'bounce',
-              },
-            },
-            number: {
-              density: {
-                enable: true,
-                value_area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: particleOpacity,
-            },
-            shape: {
-              type: 'circle',
-            },
-            size: {
-              value: { min: 1, max: 3 },
-            },
-          },
-          detectRetina: true,
-          interactivity: {
-            detect_on: 'canvas',
-            events: {
-              onHover: {
-                enable: true,
-                mode: 'grab',
-              },
-              resize: true,
-            },
-            modes: {
-              grab: {
-                distance: 200,
-                links: {
-                  opacity: isDark ? 0.3 : 0.5,
-                },
-              },
-            },
-          },
-        }}
-        style={{ position: 'absolute', width: '100%', height: '100%', pointerEvents: 'none' }}
+        id={particleIdRef.current}
+        options={options}
+        className="absolute inset-0 w-full h-full"
+        style={{ pointerEvents: 'none' }}
       />
     </div>
   );

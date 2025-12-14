@@ -31,41 +31,35 @@ const Home = () => {
 
       {/* Main Content */}
       <main className="lg:pl-72 relative">
+        {/* Home - bg-white/dark:bg-dark-bg - Show particles in dark theme only */}
         <div className="bg-white dark:bg-dark-bg relative">
-          {particlesEnabled && <ParticleBackground variant="light" />}
-          <div className="relative z-10">
-            <HomeSection />
-          </div>
+          {particlesEnabled && <ParticleBackground showInDark={true} />}
+          <HomeSection />
         </div>
+        {/* About - bg-slate-100/dark:bg-[#1a1a1a] - Show particles in light theme only */}
         <div className="bg-slate-100 dark:bg-[#1a1a1a] relative">
-          {particlesEnabled && <ParticleBackground variant="dark" />}
-          <div className="relative z-10">
-            <AboutSection />
-          </div>
+          {particlesEnabled && <ParticleBackground showInDark={false} />}
+          <AboutSection />
         </div>
+        {/* Services - bg-white/dark:bg-dark-bg - Show particles in dark theme only */}
         <div className="bg-white dark:bg-dark-bg relative">
-          {particlesEnabled && <ParticleBackground variant="light" />}
-          <div className="relative z-10">
-            <ServicesSection />
-          </div>
+          {particlesEnabled && <ParticleBackground showInDark={true} />}
+          <ServicesSection />
         </div>
+        {/* Portfolio - bg-slate-100/dark:bg-[#1a1a1a] - Show particles in light theme only */}
         <div className="bg-slate-100 dark:bg-[#1a1a1a] relative">
-          {particlesEnabled && <ParticleBackground variant="dark" />}
-          <div className="relative z-10">
-            <PortfolioSection />
-          </div>
+          {particlesEnabled && <ParticleBackground showInDark={false} />}
+          <PortfolioSection />
         </div>
+        {/* Blog - bg-white/dark:bg-dark-bg - Show particles in dark theme only */}
         <div className="bg-white dark:bg-dark-bg relative">
-          {particlesEnabled && <ParticleBackground variant="light" />}
-          <div className="relative z-10">
-            <BlogSection />
-          </div>
+          {particlesEnabled && <ParticleBackground showInDark={true} />}
+          <BlogSection />
         </div>
+        {/* Contact - bg-slate-100/dark:bg-[#1a1a1a] - Show particles in light theme only */}
         <div className="bg-slate-100 dark:bg-[#1a1a1a] relative">
-          {particlesEnabled && <ParticleBackground variant="dark" />}
-          <div className="relative z-10">
-            <ContactSection />
-          </div>
+          {particlesEnabled && <ParticleBackground showInDark={false} />}
+          <ContactSection />
         </div>
       </main>
     </div>

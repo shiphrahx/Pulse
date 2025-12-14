@@ -20,7 +20,7 @@ const PortfolioSection = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-12 relative z-10">
           {categories.portfolio.map((category) => (
             <button
               key={category}
