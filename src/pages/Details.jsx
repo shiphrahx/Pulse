@@ -14,6 +14,11 @@ const Details = ({ type }) => {
     ? services.find(item => item.id === id)
     : portfolio.find(item => item.id === id);
 
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    navigate('/', { state: { scrollTo: 'contact' } });
+  };
+
   useEffect(() => {
     if (!data) {
       navigate('/');
@@ -186,12 +191,12 @@ const Details = ({ type }) => {
 
           {/* CTA */}
           <div className="mt-12 text-center">
-            <Link
-              to="/#contact"
+            <button
+              onClick={handleContactClick}
               className="btn btn-primary inline-flex"
             >
               Get Started
-            </Link>
+            </button>
           </div>
         </article>
       </main>

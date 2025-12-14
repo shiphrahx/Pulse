@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import ConfigPanel from '../components/ConfigPanel';
 import ParticleBackground from '../components/ParticleBackground';
@@ -12,6 +13,7 @@ import { useConfig } from '../context/ConfigContext';
 
 const Home = () => {
   const { particlesEnabled } = useConfig();
+  const location = useLocation();
 
   useEffect(() => {
     // Set page title
@@ -22,7 +24,18 @@ const Home = () => {
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Professional portfolio and vCard template showcasing work, skills, and expertise.');
     }
-  }, []);
+
+    // Handle scroll to section from navigation state
+    if (location.state?.scrollTo) {
+      const sectionId = location.state.scrollTo;
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   return (
     <div className="min-h-screen relative">
