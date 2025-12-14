@@ -76,7 +76,7 @@ const HomeSection = () => {
       id="home"
       className="section min-h-screen flex items-center justify-center"
     >
-      <div className="container mx-auto px-6 max-w-4xl">
+      <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <div className="text-center animate-slide-up">
           {/* Profile Image */}
           <div className="w-40 h-40 mx-auto mb-8 rounded-full overflow-hidden ring-8 ring-primary-500/20 shadow-2xl">

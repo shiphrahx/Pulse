@@ -21,7 +21,7 @@ const BlogSection = () => {
 
   return (
     <section id="blog" className="section">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="section-title">Blog</h2>

@@ -118,7 +118,7 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="section">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="section-title">About Me</h2>
