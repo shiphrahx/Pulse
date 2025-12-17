@@ -1,20 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 
 export const useTyper = (strings = [], typingSpeed = 100, deletingSpeed = 50, pauseDuration = 2000) => {
-  const [currentText, setCurrentText] = useState('');
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  const [currentText, setCurrentText] = useState(prefersReducedMotion ? (strings[0] || '') : '');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const timeoutRef = useRef(null);
 
   useEffect(() => {
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-
     if (prefersReducedMotion) {
       // Show full text without animation
-      setCurrentText(strings[0] || '');
       return;
     }
 
@@ -50,7 +49,7 @@ export const useTyper = (strings = [], typingSpeed = 100, deletingSpeed = 50, pa
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [currentText, currentIndex, isDeleting, strings, typingSpeed, deletingSpeed, pauseDuration]);
+  }, [currentText, currentIndex, isDeleting, strings, typingSpeed, deletingSpeed, pauseDuration, prefersReducedMotion]);
 
   return currentText;
 };

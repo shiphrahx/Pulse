@@ -1,0 +1,54 @@
+PULSE - CHANGELOG
+=================
+
+Version 1.0.2 - December 15, 2025
+----------------------------------
+- IMPROVED: Removed unused code and dependencies for cleaner codebase
+- OPTIMIZED: Removed framer-motion dependency (500KB bundle size reduction)
+- REMOVED: Unused components (SEO.jsx, ColorSwitcher.jsx, App.css)
+- REMOVED: Unused CSS classes
+- UPDATED: Profile picture to professional image
+- OPTIMIZED: Favicon configuration for better browser compatibility
+- FIXED: All ESLint errors and warnings (11 issues resolved)
+- FIXED: React Hooks purity violations in ParticleBackground component
+- FIXED: Ref cleanup warnings in AboutSection and HomeSection
+- FIXED: setState-in-effect violations in Preloader and custom hooks
+- FIXED: Fast refresh violations in Context files
+- IMPROVED: Code quality with proper React best practices
+- UPDATED: Package.json with proper version and metadata
+
+Version 1.0.1 - December 14, 2025
+----------------------------------
+- NEW: Animated particle background with performance optimization
+- NEW: Configuration panel for real-time customization
+- NEW: 8 color scheme options (Blue, Purple, Green, Orange, Pink, Red, Teal, Yellow)
+- NEW: Particle toggle functionality
+- IMPROVED: Implemented singleton pattern for particle rendering
+- IMPROVED: Enhanced performance with Intersection Observer for particle activation
+- FIXED: Portfolio filter clickability issues
+- FIXED: Navigation from detail pages to scroll to correct sections on home page
+- FIXED: Z-index stacking issues affecting clickable elements in light theme
+- UPDATED: Project structure with new context providers (ColorContext, ConfigContext)
+
+Version 1.0.0 - January 15, 2025
+---------------------------------
+- Initial release
+- Single-page portfolio with 6 sections (Home, About, Services, Portfolio, Blog, Contact)
+- Service detail pages with full descriptions
+- Portfolio detail pages with image galleries
+- Blog article pages with markdown-style content rendering
+- Light/Dark theme toggle with localStorage persistence
+- OS preference detection for default theme
+- Fully responsive design (mobile, tablet, desktop)
+- SEO optimization with meta tags, Open Graph, and Twitter Cards
+- Accessibility features (WCAG compliant, keyboard navigation, ARIA labels)
+- Smooth scrolling and animations
+- Preloader with timeout safeguard
+- Contact form with client-side validation
+- Testimonials slider with keyboard controls
+- Filterable portfolio and blog sections
+- Mobile-friendly drawer navigation
+- Google Fonts (Inter, Sora)
+- React Icons integration
+- Vite build system for fast development
+- Tailwind CSS for utility-first styling

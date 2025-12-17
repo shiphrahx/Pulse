@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Deployment
+.netlify
+
+# AI tools
+.claude

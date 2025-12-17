@@ -1,0 +1,97 @@
+PULSE - SUPPORT INFORMATION
+============================
+
+Thank you for purchasing Pulse!
+
+SUPPORT CHANNELS
+----------------
+
+For support inquiries, please use the following channels:
+
+1. Item Support Tab
+   Visit the item's support tab on ThemeForest and create a support ticket.
+   This is the fastest way to get help.
+
+2. Documentation
+   Please read through the documentation files first:
+   - README.md - Complete installation and configuration guide
+   - QUICKSTART.md - Quick start guide
+   - FEATURES.md - Full feature list
+   - TROUBLESHOOTING.md - Common issues and solutions
+
+3. Email Support
+   support@example.com
+   (Please include your purchase code in all support emails)
+
+SUPPORT INCLUDES
+----------------
+
+✓ Answering questions about how to use the template
+✓ Assistance with bugs and issues
+✓ Help with template features and customization
+✓ Guidance on updating the template
+✓ Clarification on documentation
+
+SUPPORT DOES NOT INCLUDE
+-------------------------
+
+✗ Customization services beyond template features
+✗ Installation on your server
+✗ Third-party plugin/library support
+✗ Browser compatibility issues caused by user modifications
+✗ Support for modified/customized code
+
+RESPONSE TIME
+-------------
+
+We aim to respond to all support requests within 24-48 hours (Monday-Friday).
+Please note that weekends and holidays may have longer response times.
+
+BEFORE CONTACTING SUPPORT
+--------------------------
+
+Please try these steps first:
+
+1. Read the documentation thoroughly
+2. Check the TROUBLESHOOTING.md file
+3. Clear your browser cache
+4. Test in a different browser
+5. Ensure you're using the latest version
+6. Check if your issue is already reported
+
+PROVIDING INFORMATION
+---------------------
+
+When requesting support, please provide:
+
+1. Your purchase code (required)
+2. Detailed description of the issue
+3. Steps to reproduce the problem
+4. Screenshots or screen recordings (if applicable)
+5. Browser and operating system information
+6. Error messages (if any)
+7. Link to your site (if the issue is on a live site)
+
+UPDATES & CHANGELOG
+-------------------
+
+Check the CHANGELOG.txt file for version updates and new features.
+Updates are free for all customers with active support.
+
+REFUND POLICY
+-------------
+
+Please review Envato's refund policy:
+https://themeforest.net/page/item_support_policy
+
+ITEM RATING
+-----------
+
+If you're happy with the template and our support, we'd greatly appreciate
+a 5-star rating on ThemeForest!
+
+Your feedback helps us improve and create better products.
+
+---
+
+Last updated: December 14, 2025

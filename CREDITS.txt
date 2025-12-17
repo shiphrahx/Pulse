@@ -1,0 +1,135 @@
+PULSE - CREDITS & ATTRIBUTION
+==============================
+
+This template uses the following third-party resources. We are grateful to the authors and contributors.
+
+FRAMEWORKS & LIBRARIES
+----------------------
+
+React (MIT License)
+- Version: 19.2.0
+- Author: Meta Platforms, Inc.
+- URL: https://react.dev
+- License: https://github.com/facebook/react/blob/main/LICENSE
+
+Vite (MIT License)
+- Version: 7.2.4
+- Author: Evan You and Vite contributors
+- URL: https://vitejs.dev
+- License: https://github.com/vitejs/vite/blob/main/LICENSE
+
+Tailwind CSS (MIT License)
+- Version: 3.4.19
+- Author: Tailwind Labs
+- URL: https://tailwindcss.com
+- License: https://github.com/tailwindlabs/tailwindcss/blob/master/LICENSE
+
+React Router (MIT License)
+- Version: 7.10.1
+- Author: Remix Software Inc.
+- URL: https://reactrouter.com
+- License: https://github.com/remix-run/react-router/blob/main/LICENSE.md
+
+ICONS
+-----
+
+React Icons (MIT License)
+- Version: 5.5.0
+- Author: kamijin_fanta and contributors
+- URL: https://react-icons.github.io/react-icons/
+- License: https://github.com/react-icons/react-icons/blob/master/LICENSE
+- Note: Includes Font Awesome icons
+
+PARTICLES
+---------
+
+tsParticles React (MIT License)
+- Version: 3.0.0
+- Author: Matteo Bruni
+- URL: https://particles.js.org
+- License: https://github.com/tsparticles/react/blob/main/LICENSE
+
+tsParticles Slim (MIT License)
+- Version: 3.9.1
+- Author: Matteo Bruni
+- URL: https://particles.js.org
+- License: https://github.com/tsparticles/tsparticles/blob/main/LICENSE
+
+FONTS
+-----
+
+Inter (SIL Open Font License 1.1)
+- Author: Rasmus Andersson
+- URL: https://fonts.google.com/specimen/Inter
+- License: https://scripts.sil.org/OFL
+
+Sora (SIL Open Font License 1.1)
+- Author: Jonathan Barnbrook, Julián Moncada
+- URL: https://fonts.google.com/specimen/Sora
+- License: https://scripts.sil.org/OFL
+
+DEMO IMAGES
+-----------
+
+Unsplash (Free to use under Unsplash License)
+- Various photographers
+- URL: https://unsplash.com
+- License: https://unsplash.com/license
+- Note: All demo images are from Unsplash and should be replaced with your own images
+
+Profile Picture:
+- Image by: Photo by Lindsey LaMont on Unsplash
+- URL: https://unsplash.com/photos/woman-standing-near-blue-steel-gate-O3ymvT7Wf9U
+
+Service Images:
+- Web Development: https://images.unsplash.com/photo-1498050108023-c5249f4df085
+- UI/UX Design: https://images.unsplash.com/photo-1561070791-2526d30994b5
+- Mobile Development: https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c
+- Backend Development: https://images.unsplash.com/photo-1558494949-ef010cbdcc31
+- Consulting: https://images.unsplash.com/photo-1552664730-d307ca884978
+- E-commerce: https://images.unsplash.com/photo-1556742049-0cfed4f6a45d
+
+Portfolio Images:
+- Various Unsplash photographers
+- All images licensed under Unsplash License
+
+Blog Images:
+- Various Unsplash photographers
+- All images licensed under Unsplash License
+
+Testimonial Avatars:
+- Various Unsplash photographers
+- All images licensed under Unsplash License
+
+DEVELOPMENT TOOLS
+-----------------
+
+ESLint (MIT License)
+- Version: 9.39.1
+- URL: https://eslint.org
+- License: https://github.com/eslint/eslint/blob/main/LICENSE
+
+PostCSS (MIT License)
+- Version: 8.5.6
+- URL: https://postcss.org
+- License: https://github.com/postcss/postcss/blob/main/LICENSE
+
+Autoprefixer (MIT License)
+- Version: 10.4.22
+- URL: https://github.com/postcss/autoprefixer
+- License: https://github.com/postcss/autoprefixer/blob/main/LICENSE
+
+SPECIAL THANKS
+--------------
+
+- All open-source contributors
+- The React community
+- The Vite team
+- Tailwind CSS team
+- Unsplash photographers
+- Font designers
+
+---
+
+For questions about licenses or credits, please contact the template author.
+Last updated: December 14, 2025

@@ -1,7 +1,9 @@
 {
   "name": "pulse",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.2",
+  "description": "Pulse - Modern One-Page Portfolio & vCard Template",
+  "author": "Your Name",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "type": "module",
   "scripts": {
     "dev": "vite",

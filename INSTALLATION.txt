@@ -1,0 +1,98 @@
+PULSE - INSTALLATION INSTRUCTIONS
+==================================
+
+Thank you for purchasing Pulse!
+
+QUICK START
+-----------
+
+1. Extract the ZIP file to your computer
+2. Open a terminal/command prompt in the extracted folder
+3. Run: npm install
+4. Run: npm run dev
+5. Open your browser to http://localhost:5173
+
+That's it! The template is now running locally.
+
+
+DETAILED INSTALLATION
+---------------------
+
+STEP 1: Prerequisites
+- Node.js version 18 or higher (https://nodejs.org)
+- npm (comes with Node.js)
+- A code editor (VS Code recommended)
+
+STEP 2: Install Dependencies
+Open terminal in the project folder and run:
+  npm install
+
+This will install all required packages (React, Vite, Tailwind CSS, etc.)
+
+STEP 3: Run Development Server
+  npm run dev
+
+Your template will be available at http://localhost:5173
+Changes you make will automatically reload in the browser.
+
+STEP 4: Build for Production
+When ready to deploy:
+  npm run build
+
+This creates optimized files in the 'dist' folder.
+
+STEP 5: Preview Production Build
+To test the production build locally:
+  npm run preview
+
+
+CUSTOMIZATION
+-------------
+
+Please refer to README.md for detailed customization instructions including:
+- Changing colors, fonts, and content
+- Adding/removing sections
+- Configuring the particle background
+- Theme customization
+- And much more!
+
+
+DEPLOYMENT
+----------
+
+After building (npm run build), upload the contents of the 'dist' folder to:
+- Netlify (drag & drop the dist folder)
+- Vercel (connect your git repository)
+- Any static hosting service
+- Your own web server
+
+For detailed deployment instructions, see README.md
+
+
+TROUBLESHOOTING
+---------------
+
+If you encounter issues:
+1. Make sure Node.js 18+ is installed: node --version
+2. Delete node_modules and package-lock.json, then run: npm install
+3. Clear your browser cache
+4. Check TROUBLESHOOTING.md for common issues
+
+For additional help, see SUPPORT.txt
+
+
+DOCUMENTATION
+-------------
+
+- README.md - Complete documentation
+- QUICKSTART.md - Quick setup guide
+- FEATURES.md - Full feature list
+- TROUBLESHOOTING.md - Common issues and solutions
+- CHANGELOG.txt - Version history
+- CREDITS.txt - Third-party resources
+- SUPPORT.txt - Support information
+
+
+Live Demo: https://pulseshiphrah.netlify.app/
+
+Thank you for choosing Pulse!

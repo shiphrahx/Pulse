@@ -1,20 +1,30 @@
 # Pulse - Modern One-Page Portfolio & vCard Template
 
-A professional, ThemeForest-ready portfolio and vCard template built with React, Vite, and Tailwind CSS. Features a smooth single-page experience with dedicated detail pages for services, portfolio items, and blog articles.
+![Pulse Preview](preview.png)
+
+A professional, ThemeForest-ready portfolio and vCard template built with React 19, Vite 7, and Tailwind CSS 3.4. Features a smooth single-page experience with dedicated detail pages for services, portfolio items, and blog articles.
+
+**Live Demo:** [https://pulseshiphrah.netlify.app/](https://pulseshiphrah.netlify.app/)
+
+[![React](https://img.shields.io/badge/React-19.2.0-blue)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.2.4-purple)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.19-teal)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-ThemeForest-green)](LICENSE.txt)
 
 ## Features
 
 ### Core Features
-- ✨ **Modern Tech Stack**: React 18, Vite, Tailwind CSS
+- ✨ **Modern Tech Stack**: React 19.2.0, Vite 7.2.4, Tailwind CSS 3.4.19
 - 🎨 **Light/Dark Theme**: Toggle with localStorage persistence and OS preference detection
 - 🎨 **8 Color Schemes**: Choose from Blue, Purple, Green, Orange, Pink, Red, Teal, and Yellow
 - ✨ **Particle Background**: Performance-optimized animated particle effects with singleton pattern
 - ⚙️ **Configuration Panel**: Real-time customization of particles and color schemes
 - 📱 **Fully Responsive**: Mobile-first design with adaptive navigation
-- ⚡ **Performance Optimized**: Lazy loading, code splitting, optimized builds with singleton particle rendering
-- ♿ **Accessible**: WCAG compliant with keyboard navigation and ARIA labels
-- 🔍 **SEO Ready**: Meta tags, Open Graph, Twitter Cards
-- 🎭 **Smooth Animations**: Framer Motion with reduced-motion support
+- ⚡ **Performance Optimized**: Production build only 145KB gzipped
+- ♿ **Accessible**: WCAG 2.1 compliant with keyboard navigation and ARIA labels
+- 🔍 **SEO Ready**: Complete meta tags, Open Graph, Twitter Cards
+- 🎭 **Smooth Animations**: CSS animations with reduced-motion support
+- 🧹 **Clean Code**: Zero ESLint errors or warnings
 
 ### Sections
 1. **Home** - Hero section with typer effect, social links, and metrics
@@ -39,7 +49,8 @@ A professional, ThemeForest-ready portfolio and vCard template built with React,
 ## Installation
 
 ### Prerequisites
-- Node.js 16+ and npm/yarn
+- Node.js 18+ and npm/yarn
+- Modern web browser (Chrome, Firefox, Safari, Edge)
 
 ### Quick Start
 
@@ -326,19 +337,16 @@ const handleSubmit = async (e) => {
 
 ## SEO Configuration
 
-Update meta tags in [index.html](index.html) and page-specific SEO in component files.
+Update meta tags in [index.html](index.html) for global SEO settings:
 
-For dynamic SEO, use the SEO component:
-
-```jsx
-import SEO from './components/SEO';
-
-<SEO
-  title="Page Title"
-  description="Page description"
-  image="/path/to/image.jpg"
-/>
+```html
+<meta name="description" content="Your site description" />
+<meta name="keywords" content="your, keywords, here" />
+<meta property="og:title" content="Your Site Title" />
+<meta property="og:description" content="Your site description" />
 ```
+
+Page-specific titles and meta descriptions are set dynamically in component files using `document.title` and `querySelector('meta[name="description"]')`.
 
 ## Deployment
 
@@ -393,19 +401,25 @@ import SEO from './components/SEO';
 
 ## Browser Support
 
-- Chrome (last 2 versions)
-- Firefox (last 2 versions)
-- Safari (last 2 versions)
-- Edge (last 2 versions)
+- ✅ Chrome (latest)
+- ✅ Firefox (latest)
+- ✅ Safari (latest)
+- ✅ Edge (latest)
+- ✅ Opera (latest)
+- ✅ Modern mobile browsers (iOS Safari, Chrome Mobile)
+- ❌ Internet Explorer (not supported - React 19 requirement)
 
 ## Performance
 
-The template is optimized for performance:
-- Lazy loading for images
-- Code splitting with React Router
-- Optimized Tailwind CSS (unused styles purged)
-- Minified production builds
-- Preload critical resources
+The template is highly optimized for performance:
+- **Small Bundle Size**: 469KB JavaScript (145KB gzipped)
+- **Optimized CSS**: 26KB CSS (5.5KB gzipped)
+- **Lazy Loading**: Images and components load on demand
+- **Code Splitting**: React Router lazy loading for optimal performance
+- **Singleton Pattern**: Only one particle instance active at a time
+- **Optimized Tailwind**: Unused styles automatically purged
+- **Minified Builds**: Production builds fully minified and optimized
+- **Preload Critical Resources**: Fonts and assets preloaded for fast initial render
 
 ## Accessibility
 
@@ -424,17 +438,25 @@ pulse/
 ├── src/
 │   ├── components/      # Reusable components
 │   │   ├── sections/    # Page sections
+│   │   │   ├── HomeSection.jsx
+│   │   │   ├── AboutSection.jsx
+│   │   │   ├── ServicesSection.jsx
+│   │   │   ├── PortfolioSection.jsx
+│   │   │   ├── BlogSection.jsx
+│   │   │   └── ContactSection.jsx
 │   │   ├── Sidebar.jsx
 │   │   ├── ConfigPanel.jsx
 │   │   ├── ParticleBackground.jsx
-│   │   ├── Preloader.jsx
-│   │   └── SEO.jsx
+│   │   └── Preloader.jsx
 │   ├── context/         # React Context providers
 │   │   ├── ThemeContext.jsx
 │   │   ├── ColorContext.jsx
 │   │   └── ConfigContext.jsx
 │   ├── data/            # Configuration and content data
+│   │   └── data.js
 │   ├── hooks/           # Custom React hooks
+│   │   ├── useTyper.js
+│   │   └── useCounter.js
 │   ├── pages/           # Page components
 │   │   ├── Home.jsx
 │   │   ├── Details.jsx
@@ -444,7 +466,8 @@ pulse/
 │   └── index.css        # Global styles
 ├── index.html
 ├── tailwind.config.js
-└── vite.config.js
+├── vite.config.js
+└── package.json
 ```
 
 ## License
@@ -453,7 +476,10 @@ This template is licensed for use on ThemeForest. See LICENSE file for details.
 
 ## Support
 
-For support, please contact: support@example.com
+For support inquiries:
+- **ThemeForest Support Tab**: For item support (include your purchase code)
+- **Documentation**: Comprehensive guides included (10 files)
+- **Live Demo**: [https://pulseshiphrah.netlify.app/](https://pulseshiphrah.netlify.app/)
 
 ## Credits
 
@@ -465,6 +491,21 @@ For support, please contact: support@example.com
 
 ## Changelog
 
+### Version 1.0.2 (2025-12-15)
+- **FIXED**: All ESLint errors and warnings (11 issues resolved)
+- **FIXED**: React Hooks purity violations in ParticleBackground component
+- **FIXED**: Ref cleanup warnings in AboutSection and HomeSection
+- **FIXED**: setState-in-effect violations in Preloader and custom hooks
+- **FIXED**: Fast refresh violations in Context files
+- **IMPROVED**: Code quality with proper React best practices
+- **IMPROVED**: Removed unused code and dependencies for cleaner codebase
+- **OPTIMIZED**: Removed framer-motion dependency (~500KB bundle size reduction)
+- **OPTIMIZED**: Favicon configuration for better browser compatibility
+- **REMOVED**: Unused components (SEO.jsx, ColorSwitcher.jsx, App.css)
+- **REMOVED**: Unused CSS classes
+- **UPDATED**: Profile picture to professional image
+- **UPDATED**: Package.json with proper version and metadata
+
 ### Version 1.0.1 (2025-12-14)
 - Added animated particle background with performance optimization
 - Added configuration panel for real-time customization
@@ -473,6 +514,8 @@ For support, please contact: support@example.com
 - Added particle toggle functionality
 - Enhanced performance with Intersection Observer for particle activation
 - Fixed portfolio filter clickability
+- Fixed navigation from detail pages to scroll to correct sections
+- Fixed z-index stacking issues for clickable elements
 - Updated project structure with new context providers
 
 ### Version 1.0.0 (2025-01-15)

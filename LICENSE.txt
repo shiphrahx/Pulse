@@ -1,0 +1,43 @@
+Pulse - Modern One-Page Portfolio & vCard Template
+Copyright (c) 2025
+
+This template is licensed under the Envato Market License.
+
+Regular License
+---------------
+By purchasing this template, you are granted a license to use the item for a single end product (one website/application) for yourself or one client.
+
+The Regular License grants you, the purchaser, an ongoing, non-exclusive, worldwide license to make use of the digital work (Item) you have selected, on the following terms:
+
+1. You are licensed to use the Item to create one single End Product for yourself or for one client (a "single application"), and the End Product can be distributed for Free.
+
+2. You can create one End Product for a client, and you can transfer that single End Product to your client for any fee. This license is then transferred to your client.
+
+3. You can make any number of copies of the single End Product, as long as the End Product is distributed for Free.
+
+4. You can modify or manipulate the Item. You can combine the Item with other works and make a derivative work from it. The resulting works are subject to the terms of this license.
+
+Extended License
+---------------
+For multiple end products or SaaS applications, you need an Extended License.
+Please visit https://themeforest.net/licenses/terms/extended for more information.
+
+Restrictions
+-----------
+1. You can't re-distribute the Item as stock, in a tool or template, or with source files. You can't do this with an Item either on its own or bundled with other items, and even if you modify the Item. You can't re-distribute or make available the Item as-is or with superficial modifications.
+
+2. You can't use the Item in any application allowing an end user to customize a digital or physical product to their specific needs, such as an "on demand", "made to order" or "build it yourself" application.
+
+3. You must not permit an end user of the End Product to extract the Item and use it separately from the End Product.
+
+4. You can't use an Item in a logo, trademark, or service mark.
+
+For the full Envato Market License terms, please visit:
+https://themeforest.net/licenses/standard
+
+Third-Party Licenses
+-------------------
+This template uses third-party libraries and resources that are licensed separately.
+Please see CREDITS.txt for full details and attribution.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -18,6 +18,7 @@ const AnimatedMetric = ({ value, label, delay }) => {
   const count = useCounter(value, 2000, isVisible);
 
   useEffect(() => {
+    const metricElement = metricRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isVisible) {
@@ -27,13 +28,13 @@ const AnimatedMetric = ({ value, label, delay }) => {
       { threshold: 0.3 }
     );
 
-    if (metricRef.current) {
-      observer.observe(metricRef.current);
+    if (metricElement) {
+      observer.observe(metricElement);
     }
 
     return () => {
-      if (metricRef.current) {
-        observer.unobserve(metricRef.current);
+      if (metricElement) {
+        observer.unobserve(metricElement);
       }
     };
   }, [isVisible]);

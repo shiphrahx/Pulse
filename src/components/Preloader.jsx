@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 
 const Preloader = () => {
-  const [progress, setProgress] = useState(0);
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  const [progress, setProgress] = useState(prefersReducedMotion ? 100 : 0);
 
   useEffect(() => {
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-
     if (prefersReducedMotion) {
       // Skip animation for reduced motion
-      setProgress(100);
       return;
     }
 
@@ -27,7 +26,7 @@ const Preloader = () => {
     }, 30);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-light-bg dark:bg-dark-bg">

@@ -73,6 +73,7 @@ const AboutSection = () => {
   const skillsContainerRef = useRef(null);
 
   useEffect(() => {
+    const skillsContainer = skillsContainerRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !skillsVisible) {
@@ -82,13 +83,13 @@ const AboutSection = () => {
       { threshold: 0.2 }
     );
 
-    if (skillsContainerRef.current) {
-      observer.observe(skillsContainerRef.current);
+    if (skillsContainer) {
+      observer.observe(skillsContainer);
     }
 
     return () => {
-      if (skillsContainerRef.current) {
-        observer.unobserve(skillsContainerRef.current);
+      if (skillsContainer) {
+        observer.unobserve(skillsContainer);
       }
     };
   }, [skillsVisible]);

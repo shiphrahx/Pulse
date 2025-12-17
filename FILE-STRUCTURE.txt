@@ -1,0 +1,114 @@
+PULSE - FILE STRUCTURE
+======================
+
+This package contains the following files and folders:
+
+ROOT FILES
+----------
+├── package.json              - Project dependencies and scripts
+├── package-lock.json         - Dependency lock file
+├── vite.config.js           - Vite configuration
+├── tailwind.config.js       - Tailwind CSS configuration
+├── postcss.config.js        - PostCSS configuration
+├── eslint.config.js         - ESLint configuration
+├── index.html               - Main HTML file
+├── .gitignore              - Git ignore rules
+│
+├── README.md               - Complete documentation (START HERE!)
+├── INSTALLATION.txt        - Installation instructions
+├── QUICKSTART.md          - Quick start guide
+├── FEATURES.md            - Full feature list
+├── TROUBLESHOOTING.md     - Common issues and solutions
+├── LICENSE.txt            - License information
+├── CHANGELOG.txt          - Version history
+├── CREDITS.txt            - Third-party credits
+├── SUPPORT.txt            - Support information
+└── FILE-STRUCTURE.txt     - This file
+
+
+FOLDERS
+-------
+
+/src/                       - Source code (React components)
+├── /components/           - Reusable React components
+│   ├── /sections/        - Page sections (Home, About, Services, etc.)
+│   ├── /layout/          - Layout components (Header, Footer, etc.)
+│   └── ParticleBackground.jsx, Preloader.jsx, etc.
+│
+├── /context/             - React Context providers
+│   ├── ThemeContext.jsx  - Dark/Light theme
+│   ├── ColorContext.jsx  - Color schemes
+│   └── ConfigContext.jsx - Configuration
+│
+├── /hooks/               - Custom React hooks
+│   ├── useCounter.js     - Counter animation
+│   └── useTyper.js       - Typing animation
+│
+├── /pages/               - Page components
+│   ├── Home.jsx          - Main landing page
+│   ├── ServiceDetail.jsx - Service detail pages
+│   ├── PortfolioDetail.jsx - Portfolio detail pages
+│   └── BlogPost.jsx      - Blog post pages
+│
+├── /data/                - Static data
+│   ├── services.js       - Services data
+│   ├── portfolio.js      - Portfolio items
+│   └── blog.js           - Blog posts
+│
+├── /utils/               - Utility functions
+│   └── scrollToSection.js - Smooth scroll utility
+│
+├── App.jsx               - Main App component
+├── main.jsx              - Application entry point
+└── index.css             - Global styles
+
+
+/public/                    - Static assets
+├── /images/               - Images (profile, portfolio, blog, etc.)
+│   ├── profile.jpg       - Profile picture
+│   ├── /portfolio/       - Portfolio images
+│   ├── /blog/            - Blog images
+│   └── /services/        - Service images
+└── vite.svg              - Vite logo
+
+
+/dist/                      - Production build (generated)
+├── index.html             - Compiled HTML
+└── /assets/               - Compiled CSS and JS
+
+
+/node_modules/              - Dependencies (auto-installed)
+
+
+IMPORTANT FILES TO CUSTOMIZE
+-----------------------------
+
+Content:
+- src/data/services.js      - Your services
+- src/data/portfolio.js     - Your portfolio items
+- src/data/blog.js          - Your blog posts
+- src/components/sections/HomeSection.jsx - Personal info
+- src/components/sections/AboutSection.jsx - About content
+- public/images/            - Replace demo images with yours
+
+Styling:
+- tailwind.config.js        - Colors, fonts, etc.
+- src/index.css             - Global styles
+
+Configuration:
+- package.json              - Project metadata
+- vite.config.js           - Build settings
+
+
+DEVELOPMENT WORKFLOW
+--------------------
+
+1. Install dependencies:        npm install
+2. Start dev server:           npm run dev
+3. Make changes to files in /src/
+4. Build for production:       npm run build
+5. Preview production build:   npm run preview
+6. Check code quality:         npm run lint
+
+
+For detailed customization instructions, see README.md

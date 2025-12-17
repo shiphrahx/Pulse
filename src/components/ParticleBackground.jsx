@@ -11,12 +11,15 @@ let engineInitPromise = null;
 let activeInstanceId = null;
 const instanceCallbacks = new Map();
 
+// Generate unique ID outside of render
+const generateUniqueId = () => `particles-${Math.random().toString(36).substr(2, 9)}`;
+
 const ParticleBackground = ({ showInDark = true }) => {
   const { theme } = useTheme();
   const [init, setInit] = useState(engineInitialized);
   const [isActive, setIsActive] = useState(false);
   const containerRef = useRef(null);
-  const particleIdRef = useRef(`particles-${Math.random().toString(36).substr(2, 9)}`);
+  const [particleId] = useState(() => generateUniqueId());
 
   const isDark = theme === 'dark';
   const shouldShow = (showInDark && isDark) || (!showInDark && !isDark);
@@ -24,7 +27,6 @@ const ParticleBackground = ({ showInDark = true }) => {
   // Initialize particles engine once globally
   useEffect(() => {
     if (engineInitialized) {
-      setInit(true);
       return;
     }
 
@@ -42,7 +44,8 @@ const ParticleBackground = ({ showInDark = true }) => {
 
   // Intersection Observer to detect visibility
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -51,20 +54,20 @@ const ParticleBackground = ({ showInDark = true }) => {
 
           // Register callback for global singleton management
           if (visible) {
-            instanceCallbacks.set(particleIdRef.current, () => setIsActive(true));
+            instanceCallbacks.set(particleId, () => setIsActive(true));
 
             // Deactivate previous instance immediately
-            if (activeInstanceId && activeInstanceId !== particleIdRef.current) {
+            if (activeInstanceId && activeInstanceId !== particleId) {
               const prevCallback = instanceCallbacks.get(activeInstanceId);
               if (prevCallback) prevCallback(false);
             }
 
             // Activate this instance
-            activeInstanceId = particleIdRef.current;
+            activeInstanceId = particleId;
             setIsActive(true);
           } else {
-            instanceCallbacks.delete(particleIdRef.current);
-            if (activeInstanceId === particleIdRef.current) {
+            instanceCallbacks.delete(particleId);
+            if (activeInstanceId === particleId) {
               activeInstanceId = null;
             }
             setIsActive(false);
@@ -77,15 +80,15 @@ const ParticleBackground = ({ showInDark = true }) => {
       }
     );
 
-    observer.observe(containerRef.current);
+    observer.observe(container);
     return () => {
-      instanceCallbacks.delete(particleIdRef.current);
-      if (activeInstanceId === particleIdRef.current) {
+      instanceCallbacks.delete(particleId);
+      if (activeInstanceId === particleId) {
         activeInstanceId = null;
       }
       observer.disconnect();
     };
-  }, []);
+  }, [particleId]);
 
   const particleColor = isDark ? '#64748b' : '#94a3b8';
   const lineColor = isDark ? '#64748b' : '#94a3b8';
@@ -187,7 +190,7 @@ const ParticleBackground = ({ showInDark = true }) => {
   return (
     <div ref={containerRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
       <Particles
-        id={particleIdRef.current}
+        id={particleId}
         options={options}
         className="absolute inset-0 w-full h-full"
         style={{ pointerEvents: 'none' }}

@@ -12,14 +12,19 @@ export const useCounter = (end, duration = 2000, start = false) => {
   const countRef = useRef(0);
   const startTimeRef = useRef(null);
   const rafRef = useRef(null);
+  const prevStartRef = useRef(start);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start) {
+      return;
+    }
 
-    // Reset counter when starting
-    countRef.current = 0;
-    setCount(0);
-    startTimeRef.current = null;
+    // Reset counter when starting (only if transitioning from false to true)
+    if (!prevStartRef.current && start) {
+      countRef.current = 0;
+      startTimeRef.current = null;
+    }
+    prevStartRef.current = start;
 
     const animate = (timestamp) => {
       if (!startTimeRef.current) {
