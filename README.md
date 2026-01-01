@@ -2,14 +2,13 @@
 
 ![Pulse Preview](preview.png)
 
-A professional, ThemeForest-ready portfolio and vCard template built with React 19, Vite 7, and Tailwind CSS 3.4. Features a smooth single-page experience with dedicated detail pages for services, portfolio items, and blog articles.
+A professional portfolio and vCard template built with React 19, Vite 7, and Tailwind CSS 3.4. Features a smooth single-page experience with dedicated detail pages for services, portfolio items, and blog articles.
 
 **Live Demo:** [https://pulseshiphrah.netlify.app/](https://pulseshiphrah.netlify.app/)
 
 [![React](https://img.shields.io/badge/React-19.2.0-blue)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-7.2.4-purple)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.19-teal)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-ThemeForest-green)](LICENSE.txt)
 
 ## Features
 
@@ -470,14 +469,9 @@ pulse/
 └── package.json
 ```
 
-## License
-
-This template is licensed for use on ThemeForest. See LICENSE file for details.
-
 ## Support
 
 For support inquiries:
-- **ThemeForest Support Tab**: For item support (include your purchase code)
 - **Documentation**: Comprehensive guides included (10 files)
 - **Live Demo**: [https://pulseshiphrah.netlify.app/](https://pulseshiphrah.netlify.app/)
 
@@ -530,4 +524,3 @@ For support inquiries:
 
 ---
 
-Made with ❤️ for ThemeForest
